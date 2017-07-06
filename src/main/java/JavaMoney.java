@@ -1,3 +1,5 @@
+import java.util.function.Function;
+
 class JavaMoney {
     private final int amount;
     private final String currency;
@@ -24,5 +26,17 @@ class JavaMoney {
         int result = amount;
         result = 31 * result + ( currency != null ? currency.hashCode() : 0 );
         return result;
+    }
+
+    private int method( Function<String, Integer> length ) {
+        String str = "Hello World";
+        return length.apply( str );
+    }
+
+    public static void main( String[] args ) {
+        final JavaMoney money = new JavaMoney( 10, "$" );
+
+        final int length = money.method( String::length );
+        System.out.println( length );
     }
 }
