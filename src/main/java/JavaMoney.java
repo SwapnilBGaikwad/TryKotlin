@@ -4,7 +4,7 @@ import com.google.auto.value.AutoValue;
 abstract class JavaMoney {
     abstract Integer amount();
 
-    public abstract String currency();
+    abstract String currency();
 
     static Builder builder() {
         return new AutoValue_JavaMoney.Builder();

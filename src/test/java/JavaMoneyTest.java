@@ -1,6 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.junit.Assert.*;
+
 public class JavaMoneyTest {
     @Test
     public void returns_true_if_money_amount_and_currency_is_same() {
@@ -12,7 +14,8 @@ public class JavaMoneyTest {
                 .setAmount( 20 )
                 .setCurrency( "$" )
                 .build();
-        Assert.assertEquals( javaMoney1, javaMoney2 );
-//        Assert.assertEquals( 20 , javaMoney1.setAmount() );
+        assertEquals( javaMoney1, javaMoney2 );
+        assertEquals( new Integer( 20 ), javaMoney1.amount() );
+        assertEquals( "$", javaMoney1.currency() );
     }
 }
