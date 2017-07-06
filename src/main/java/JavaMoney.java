@@ -1,42 +1,21 @@
-import java.util.function.Function;
+import com.google.auto.value.AutoValue;
 
-class JavaMoney {
-    private final int amount;
-    private final String currency;
+@AutoValue
+abstract class JavaMoney {
+    abstract Integer amount();
 
-    JavaMoney( int amount, String currency ) {
-        this.amount = amount;
-        this.currency = currency;
+    public abstract String currency();
+
+    static Builder builder() {
+        return new AutoValue_JavaMoney.Builder();
     }
 
-    @Override public boolean equals( Object o ) {
-        if ( this == o )
-            return true;
-        if ( o == null || getClass() != o.getClass() )
-            return false;
+    @AutoValue.Builder
+    abstract static class Builder {
+        abstract Builder setAmount( Integer amount );
 
-        JavaMoney javaMoney = (JavaMoney) o;
+        abstract Builder setCurrency( String currency );
 
-        return amount == javaMoney.amount && ( currency != null ?
-                currency.equals( javaMoney.currency ) :
-                javaMoney.currency == null );
-    }
-
-    @Override public int hashCode() {
-        int result = amount;
-        result = 31 * result + ( currency != null ? currency.hashCode() : 0 );
-        return result;
-    }
-
-    private int method( Function<String, Integer> length ) {
-        String str = "Hello World";
-        return length.apply( str );
-    }
-
-    public static void main( String[] args ) {
-        final JavaMoney money = new JavaMoney( 10, "$" );
-
-        final int length = money.method( String::length );
-        System.out.println( length );
+        abstract JavaMoney build();
     }
 }
